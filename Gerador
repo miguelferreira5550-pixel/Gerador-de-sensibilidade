@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Gerador Perfeito Free Fire</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+    margin:0;
+    background:#0a0a0a;
+    font-family:sans-serif;
+    color:white;
+}
+.header{
+    background:#ffeb3b;
+    text-align:center;
+    padding:18px;
+    font-size:20px;
+    font-weight:bold;
+    color:black;
+}
+.app{
+    padding:15px;
+}
+.card{
+    background:#1f1f1f;
+    border-radius:12px;
+    padding:12px;
+    margin-bottom:12px;
+}
+label{
+    font-size:15px;
+    color:#ccc;
+}
+select,input{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:none;
+    font-size:16px;
+    margin-top:6px;
+}
+button{
+    width:100%;
+    padding:14px;
+    background:#ffeb3b;
+    color:black;
+    font-weight:bold;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    margin-top:10px;
+}
+.result{
+    background:#000;
+    padding:15px;
+    border-radius:12px;
+    margin-top:15px;
+    text-align:center;
+    font-size:17px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="header">GERADOR DE SENSIBILIDADE FF 🔥</div>
+
+<div class="app">
+
+<div class="card">
+<label>Marca do celular</label>
+<select id="marca">
+  <option>Samsung</option>
+  <option>Xiaomi</option>
+  <option>Motorola</option>
+  <option>Realme</option>
+  <option>Outro</option>
+</select>
+</div>
+
+<div class="card">
+<label>Nível de Sensibilidade</label>
+<select id="nivel">
+  <option value="alta">Alta</option>
+  <option value="media">Média</option>
+  <option value="baixa">Baixa</option>
+</select>
+</div>
+
+<div class="card">
+<label>Número do botão de tiro</label>
+<input type="number" id="botao" placeholder="Ex: 50 (padrão)">
+</div>
+
+<div class="card">
+<label>Usar DPI?</label>
+<select id="dpi">
+  <option value="sim">Sim</option>
+  <option value="nao">Não</option>
+</select>
+</div>
+
+<button onclick="gerar()">GERAR SENSIBILIDADE</button>
+
+<div class="result" id="resultado"></div>
+
+</div>
+
+<script>
+function gerar(){
+  let nivel=document.getElementById("nivel").value;
+  let botao=parseInt(document.getElementById("botao").value)||50;
+  let dpi=document.getElementById("dpi").value;
+
+  let geral, red, scope, awm;
+
+  if(nivel=="alta"){
+    geral=200;red=195;scope=185;awm=170;
+  }else if(nivel=="media"){
+    geral=180;red=175;scope=165;awm=150;
+  }else{
+    geral=160;red=155;scope=145;awm=130;
+  }
+
+  let ajuste=(botao-50)/2;
+  geral+=ajuste;
+  red+=ajuste;
+
+  if(dpi=="sim"){
+    geral-=12;
+    red-=12;
+    scope-=12;
+  }
+
+  document.getElementById("resultado").innerHTML=
+  `<b>🎯 Sensibilidade Ideal</b><br><br>
+  👊 Geral: ${Math.round(geral)}<br>
+  🔴 Mira Vermelha: ${Math.round(red)}<br>
+  🎯 Mira 2x / 4x: ${Math.round(scope)}<br>
+  🎯 Sniper / AWM: ${Math.round(awm)}<br><br>
+  ✔️ Perfeita pra todos os modos!`;
+}
+</script>
+
+</body>
+</html>
